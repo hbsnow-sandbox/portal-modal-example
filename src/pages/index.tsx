@@ -18,19 +18,14 @@ const Page: NextPage = () => {
         <input
           type="text"
           value={modalName}
-          onChange={(event): void => setModalName(event.target.value)}
+          onChange={(event): void => setModalName(`${event.target.value}`)}
         />
       </div>
       <div>
         <button
           onClick={(): void => dispatch({ type: 'push', modal: modalName })}
         >
-          add {modalName ? `${modalName} ` : null} modal
-        </button>
-      </div>
-      <div>
-        <button onClick={(): void => dispatch({ type: 'shift' })}>
-          shift modal
+          add {modalName ? modalName : null} modal
         </button>
       </div>
 

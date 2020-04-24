@@ -1,25 +1,33 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useState, useEffect } from 'react'
 
-import ReactDOM from 'react-dom'
+import { createPortal } from 'react-dom'
 
-import { StateType, StateContext } from '../modules/modules'
+import { StateType, StateContext, DispatchContext } from '../modules/modules'
 
-const Modal = () => {
+const Modal: React.FC = () => {
+  const ref = useRef()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    ref.current = document.querySelector('#__next')
+    setMounted(true)
+  }, [])
+
+  const dispatch = useContext(DispatchContext)
   const state = useContext<StateType>(StateContext)
 
-  const renderModal = (): JSX.Element => {
-    return (
-      <div>
-        <div>Modal</div>
-        <button onClick={(): void => alert('未実装')}>Close</button>
-      </div>
-    )
-  }
-
-  return ReactDOM.createPortal(
-    state.modals.length > 0 && renderModal(),
-    document?.getElementById('modal')
-  )
+  return mounted
+    ? createPortal(
+        <div>
+          <button onClick={(): void => dispatch({ type: 'shift' })}>
+            close
+          </button>
+          <pre>{JSON.stringify(state.modals)}</pre>
+          {state.modals?.[0] && <div>type: {state.modals[0]}</div>}
+        </div>,
+        ref.current
+      )
+    : null
 }
 
 export default Modal
