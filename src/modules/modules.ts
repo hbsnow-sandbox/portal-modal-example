@@ -26,6 +26,6 @@ export const reducer = (state: StateType, action): StateType => {
       return { modals }
     }
     default:
-      throw new Error()
+      throw new Error('未定義のaction')
   }
 }

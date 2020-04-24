@@ -3,10 +3,11 @@ import React, { useContext, useState } from 'react'
 import { NextPage } from 'next'
 
 import Modal from '../components/Modal'
-import { DispatchContext } from '../modules/modules'
+import { DispatchContext, StateType, StateContext } from '../modules/modules'
 
 const Page: NextPage = () => {
   const dispatch = useContext(DispatchContext)
+  const state = useContext<StateType>(StateContext)
 
   const [modalName, setModalName] = useState('')
 
@@ -27,6 +28,8 @@ const Page: NextPage = () => {
         >
           add {modalName ? modalName : null} modal
         </button>
+
+        <pre>{JSON.stringify(state.modals)}</pre>
       </div>
 
       <Modal />
