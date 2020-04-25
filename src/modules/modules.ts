@@ -25,6 +25,12 @@ export const reducer = (state: StateType, action): StateType => {
 
       return { modals }
     }
+    case 'unshift': {
+      const modals = [...state.modals]
+      modals.unshift(action.modal)
+
+      return { modals }
+    }
     default:
       throw new Error('未定義のaction')
   }

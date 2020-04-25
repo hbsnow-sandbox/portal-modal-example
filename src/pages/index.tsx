@@ -11,6 +11,14 @@ const Page: NextPage = () => {
 
   const [modalName, setModalName] = useState('')
 
+  const onClickHandler = (): void => {
+    if (!modalName) {
+      dispatch({ type: 'unshift', modal: 'error.empty' })
+      return
+    }
+    dispatch({ type: 'push', modal: modalName })
+  }
+
   return (
     <>
       <h1>Potal Modal Example</h1>
@@ -23,9 +31,7 @@ const Page: NextPage = () => {
         />
       </div>
       <div>
-        <button
-          onClick={(): void => dispatch({ type: 'push', modal: modalName })}
-        >
+        <button onClick={onClickHandler}>
           add {modalName ? modalName : null} modal
         </button>
 
