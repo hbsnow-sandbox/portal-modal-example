@@ -1,7 +1,9 @@
-import { createContext } from 'react'
+import { createContext, Dispatch } from 'react'
 
-export const StateContext = createContext(undefined)
-export const DispatchContext = createContext(undefined)
+export const Context = createContext<{
+  state: StateType
+  dispatch: Dispatch<any>
+}>(undefined)
 
 export type StateType = {
   modals: string[]

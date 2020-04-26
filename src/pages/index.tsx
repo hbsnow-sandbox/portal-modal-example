@@ -3,11 +3,10 @@ import React, { useContext, useState } from 'react'
 import { NextPage } from 'next'
 
 import Modal from '../components/Modal'
-import { DispatchContext, StateType, StateContext } from '../modules/modules'
+import { Context } from '../modules/modules'
 
 const Page: NextPage = () => {
-  const dispatch = useContext(DispatchContext)
-  const state = useContext<StateType>(StateContext)
+  const { state, dispatch } = useContext(Context)
 
   const [modalName, setModalName] = useState('')
 

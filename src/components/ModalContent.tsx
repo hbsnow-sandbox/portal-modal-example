@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-import { DispatchContext } from '../modules/modules'
+import { Context } from '../modules/modules'
 import Dialog from './Dialog'
 
 type Props = {
@@ -8,28 +8,9 @@ type Props = {
 }
 
 const ModalContent: React.FC<Props> = ({ type }) => {
-  const dispatch = useContext(DispatchContext)
+  const { dispatch } = useContext(Context)
 
   switch (type) {
-    case 'dialog.unshift':
-      return (
-        <Dialog>
-          <p>前に通常のダイアログを追加できるダイアログ</p>
-          <div>
-            <button
-              onClick={(): void =>
-                dispatch({ type: 'unshift', modal: 'dialog' })
-              }
-            >
-              unshift
-            </button>
-            <button onClick={(): void => dispatch({ type: 'shift' })}>
-              close
-            </button>
-          </div>
-        </Dialog>
-      )
-
     case 'error.empty':
       return (
         <Dialog>

@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState, useEffect } from 'react'
 
 import { createPortal } from 'react-dom'
 
-import { StateType, StateContext } from '../modules/modules'
+import { Context } from '../modules/modules'
 import ModalContent from './ModalContent'
 
 const Modal: React.FC = () => {
@@ -14,7 +14,7 @@ const Modal: React.FC = () => {
     setMounted(true)
   }, [])
 
-  const state = useContext<StateType>(StateContext)
+  const { state } = useContext(Context)
 
   return mounted
     ? createPortal(
