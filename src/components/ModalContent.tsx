@@ -11,6 +11,25 @@ const ModalContent: React.FC<Props> = ({ type }) => {
   const { dispatch } = useContext(Context)
 
   switch (type) {
+    case 'dialog.unshift':
+      return (
+        <Dialog>
+          <p>前に通常のダイアログを追加できるダイアログ</p>
+          <div>
+            <button
+              onClick={(): void =>
+                dispatch({ type: 'unshift', modal: 'dialog' })
+              }
+            >
+              unshift
+            </button>
+            <button onClick={(): void => dispatch({ type: 'shift' })}>
+              close
+            </button>
+          </div>
+        </Dialog>
+      )
+
     case 'error.empty':
       return (
         <Dialog>
